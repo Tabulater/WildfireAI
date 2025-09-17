@@ -25,6 +25,21 @@ npm run build
 npm start
 ```
 
+### Web UI (Leaflet map with hotspots + weather)
+
+```powershell
+# Windows PowerShell: set your OpenWeather key for the session
+$env:OPENWEATHER_API_KEY = "<your-openweather-key>"
+
+# Install/update dependencies
+npm install
+
+# Run the web server (serves public/ and provides /api endpoints)
+npm run web
+```
+
+Then open http://localhost:5173 in your browser. You'll see a world map with red markers for FIRMS hotspots. Click a marker to fetch current weather (temperature, wind, humidity, conditions) via the relay endpoint.
+
 ## Configuration
 
 - `FIRMS_CSV_URL` (optional): Override the default dataset (MODIS Global 24h). Example alternatives:
@@ -71,6 +86,7 @@ npm run dev
 
 - CSV parsing here is lightweight and assumes no embedded commas inside fields; this is fine for current FIRMS CSVs with numeric and simple text columns. If you encounter malformed rows, consider swapping in a robust CSV parser like `csv-parse`.
 - This project uses ESM (`"type": "module"`) and TS config `moduleResolution: NodeNext`.
+- A responsive layout is implemented in `public/styles.css` so the side panel collapses beneath the map on narrow screens.
 
 ## What the app does now
 
@@ -78,6 +94,8 @@ npm run dev
 - `src/utils/geo.ts` provides `haversineDistance(lat1, lon1, lat2, lon2)` (km) for spatial matching.
 - `src/utils/fetchWrapper.ts` wraps `fetch` with up to 3 retries, exponential backoff, and incomplete-data detection/logging.
 - `src/data/weather.ts` calls OpenWeather Current Weather API for given coordinates, with retry awareness.
+- `src/server.ts` provides endpoints `GET /api/hotspots`, `GET /api/weather`, serves static files from `public/`.
+- `public/index.html`, `public/app.js`, `public/styles.css` implement a Leaflet map UI, red circle markers for hotspots, and a weather info panel.
 - `src/index.ts`:
   - Fetches FIRMS points.
   - Deduplicates nearby points (rounds to 2 decimals) and limits to 15 to avoid hammering the API.

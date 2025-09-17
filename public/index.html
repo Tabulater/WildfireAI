@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wildfire AI - Hotspots & Weather</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">🔥 Wildfire AI</div>
+      <div class="toolbar">
+        <label>
+          Limit
+          <input id="limitInput" type="number" value="100" min="10" max="200" step="10" />
+        </label>
+        <button id="refreshBtn">Refresh</button>
+      </div>
+    </header>
+    <main class="app-main">
+      <section class="map-section">
+        <div id="map" aria-label="Wildfire hotspot map"></div>
+      </section>
+      <aside class="side-panel" id="sidePanel">
+        <h2>Weather Relay</h2>
+        <div id="weatherBox" class="weather-box empty">Click a marker to see current weather</div>
+        <div class="notes">
+          Data sources:
+          <ul>
+            <li>Hotspots: NASA FIRMS</li>
+            <li>Weather: OpenWeather</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+    <footer class="app-footer">
+      <span id="status">Loading...</span>
+    </footer>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
