@@ -82,3 +82,32 @@ npm run dev
   - Fetches FIRMS points.
   - Deduplicates nearby points (rounds to 2 decimals) and limits to 15 to avoid hammering the API.
   - Fetches weather for each point with concurrency limit (5), then logs a merged line per point.
+
+## ML: preprocessing, synthetic data, and training
+
+- `src/ml/preprocess.ts`:
+  - `StandardScaler` for z-score normalization.
+  - `vectorize()` to map `{ tempC, humidity, windSpeedMs, confidence }` -> `[tempC, humidity, windSpeedMs, confidenceNum]`.
+- `src/ml/synthetic.ts`: generates a synthetic dataset with labels using simple domain heuristics + noise.
+- `src/ml/model.ts`: defines a small TF.js model with two hidden layers and training helpers.
+- `src/train.ts`: orchestrates synthetic data generation, scaling, training, evaluation, and saves artifacts under `models/<timestamp>/` (model + scaler.json).
+
+### Train locally
+
+1) Install dependencies (includes `@tensorflow/tfjs-node`):
+
+```powershell
+npm install
+```
+
+2) Run training:
+
+```powershell
+npm run train
+```
+
+Artifacts will be written to `models/<timestamp>/`.
+
+Notes:
+- Training uses the pure `@tensorflow/tfjs` CPU backend (no native bindings), so it works on Node 18–22 without `dlopen` issues.
+- Training uses a synthetic dataset by default until you have a real labeled dataset.

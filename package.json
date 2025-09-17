@@ -8,12 +8,16 @@
     "build": "tsc -p tsconfig.json",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
+    "train": "tsx src/train.ts",
     "lint": "echo 'add eslint later'"
   },
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.21.0",
+    "@tensorflow/tfjs-backend-cpu": "^4.21.0"
+  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "tsx": "^4.19.1",
