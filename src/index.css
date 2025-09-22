@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 10 5% 3%;
+    --foreground: 30 5% 95%;
+
+    --card: 15 8% 8%;
+    --card-foreground: 30 5% 95%;
+
+    --popover: 15 8% 8%;
+    --popover-foreground: 30 5% 95%;
+
+    --primary: 14 89% 55%;
+    --primary-foreground: 30 5% 95%;
+    --primary-glow: 14 100% 65%;
+
+    --secondary: 25 15% 15%;
+    --secondary-foreground: 30 5% 95%;
+
+    --muted: 20 10% 12%;
+    --muted-foreground: 25 8% 65%;
+
+    --accent: 45 100% 60%;
+    --accent-foreground: 15 8% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 30 5% 95%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 14 89% 55%;
+
+    --radius: 0.75rem;
+
+    /* Fire-themed colors */
+    --fire-red: 0 85% 55%;
+    --fire-orange: 14 89% 55%;
+    --fire-yellow: 45 100% 60%;
+    --fire-danger: 0 75% 45%;
+    --fire-warning: 25 85% 55%;
+    --fire-safe: 120 40% 50%;
+    
+    /* Gradients */
+    --gradient-fire: linear-gradient(135deg, hsl(var(--fire-red)), hsl(var(--fire-orange)));
+    --gradient-danger: linear-gradient(135deg, hsl(var(--fire-danger)), hsl(var(--fire-red)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(15 8% 8%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--fire-orange)), hsl(var(--fire-yellow)));
+    
+    /* Shadows */
+    --shadow-fire: 0 10px 30px -10px hsl(var(--fire-orange) / 0.4);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    --shadow-danger: 0 8px 25px -8px hsl(var(--fire-danger) / 0.5);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fire: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 10 5% 3%;
+    --foreground: 30 5% 95%;
+
+    --card: 15 8% 8%;
+    --card-foreground: 30 5% 95%;
+
+    --popover: 15 8% 8%;
+    --popover-foreground: 30 5% 95%;
+
+    --primary: 14 89% 55%;
+    --primary-foreground: 30 5% 95%;
+    --primary-glow: 14 100% 65%;
+
+    --secondary: 25 15% 15%;
+    --secondary-foreground: 30 5% 95%;
+
+    --muted: 20 10% 12%;
+    --muted-foreground: 25 8% 65%;
+
+    --accent: 45 100% 60%;
+    --accent-foreground: 15 8% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 30 5% 95%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 14 89% 55%;
+    
+    --sidebar-background: 15 8% 8%;
+    --sidebar-foreground: 30 5% 95%;
+    --sidebar-primary: 14 89% 55%;
+    --sidebar-primary-foreground: 30 5% 95%;
+    --sidebar-accent: 20 10% 12%;
+    --sidebar-accent-foreground: 30 5% 95%;
+    --sidebar-border: 20 15% 20%;
+    --sidebar-ring: 14 89% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+  
+  .fire-glow {
+    box-shadow: var(--shadow-fire);
+  }
+  
+  .danger-glow {
+    box-shadow: var(--shadow-danger);
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .fire-gradient {
+    background: var(--gradient-fire);
+  }
+  
+  .accent-gradient {
+    background: var(--gradient-accent);
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--fire-orange) / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--fire-orange) / 0.8);
+    }
+  }
+  
+  .animate-flicker {
+    animation: flicker 1.5s ease-in-out infinite alternate;
+  }
+  
+  @keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+}
