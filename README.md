@@ -97,9 +97,6 @@ src/
 2. Commit with clear messages
 3. Open a Pull Request
 
-## 📄 License
-MIT © TheAgencyMGE. See [LICENSE](LICENSE).
-
 ## 🙏 Acknowledgments
 - NASA FIRMS, NOAA/NWS, CAL FIRE, NIFC
 - TensorFlow.js
